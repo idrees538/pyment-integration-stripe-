@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import CheckoutForm from './pages/CheckoutForm';
+
+// Load Stripe with your publishable key
+const stripePromise = loadStripe('pk_test_51QRpWsE6kFAfkJCwBU91SSzbQki8cybXNe0yQczbGnrfta92JwfvDsIsAYxdVi15ksPUprrPG4XqrHIflYZUTfYy00bvBc2Ipz'); // Replace with your Stripe Publishable Key
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Elements stripe={stripePromise}>
+            <CheckoutForm />
+        </Elements>
+    );
 }
 
 export default App;
